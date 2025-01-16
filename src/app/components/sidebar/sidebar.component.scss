@@ -64,6 +64,22 @@
 
   &__item {
     list-style: none;
+    width: 193px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+
+
+    &:hover {
+      background-color: var(--c-primary);
+      transform: scale(1.2);
+    }
+  }
+
+  &__item-icon {
+    margin-left: 5px;
+    cursor: pointer;
   }
 
   &__item-link {
@@ -71,5 +87,7 @@
     text-transform: capitalize;
     color: var(--c-black);
     font-size: 16px;
+    position: relative;
+    padding: 8px;
   }
 }

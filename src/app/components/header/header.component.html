@@ -1,3 +1,12 @@
 <header class="header">
-  <h1>Header works</h1>
+  <div class="header__container">
+    <div class="header__icon">
+      <button class="header__back-btn">
+        <img src="/assets/icons/back.svg" alt="go back button icon" />
+      </button>
+    </div>
+    <div class="header__button-block">
+      <button (click)="openAddEditForm()" type="button" class="header__button">add new user</button>
+    </div>
+  </div>
 </header>
