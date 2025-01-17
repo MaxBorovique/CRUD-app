@@ -70,16 +70,12 @@ export class UserAddEditComponent implements OnInit {
 
   onFormSubmit() {
     if (this.userForm.valid) {
-      this._userService.addUser(this.userForm.value).subscribe({
-        next: () => {
-          alert('User added succesfully');
-      this._dialogRef.close(this.userForm.value);
-
-        },
-        error: (err) => {
-          console.error(err)
-        }
-      });
+      const newUser = {
+        ...this.userForm.value,
+        createdAt: this.userForm.value.createdAt.toISOString(),
+      }
+      const updatedUsers = this._userService.addUser(newUser);
+      this._dialogRef.close(updatedUsers);
     } else {
       Object.keys(this.userForm.controls).forEach(key => {
         const control = this.userForm.get(key);

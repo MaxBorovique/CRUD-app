@@ -9,6 +9,8 @@ import { UserServiceService } from '../../services/user-service.service';
 import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-content',
@@ -17,9 +19,18 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './main-content.component.scss'
 })
 export class MainContentComponent implements OnInit{
+  users: User[] = [];
+  private usersSub!: Subscription;
   
   ngOnInit(): void {
     this.getUsersList();
+
+    this.usersSub = this._userService.getUsersUpdateListener()
+      .subscribe(users => {
+        this.dataSource = new MatTableDataSource(users);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
   }
   pageSize: number = 10;
   displayedColumns: string[] = ['firstName', 'lastName', 'createdAt', 'tags', 'email', 'description', 'action'
@@ -29,16 +40,24 @@ export class MainContentComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _userService: UserServiceService) {}
+  constructor(private _userService: UserServiceService, private _dialog: MatDialog) {}
+
   getUsersList() {
     this._userService.getUsers().subscribe({
-      next: (res) => {
-          this.dataSource = new MatTableDataSource(res);
-          this.dataSource.sort = this.sort;
-          this.dataSource.paginator = this.paginator;
+      next: (users) => {
+          this._userService.setUsers(users);
       },
       error: (err) => console.error(err)
     })
+  }
+  ngOnDestroy() {
+    if (this.usersSub) {
+      this.usersSub.unsubscribe();
+    }
+  }
+
+  deleteUser(createdAt: string) {
+    const updatedUsers = this._userService.deleteUser(createdAt);
   }
 
   applyFilter(event: Event) {
