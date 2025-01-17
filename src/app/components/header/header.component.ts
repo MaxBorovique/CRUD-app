@@ -13,9 +13,6 @@ export class HeaderComponent {
   constructor(private dialog: MatDialog) {}
   openAddEditForm() {
     
-    const dialogRef = this.dialog.open(UserAddEditComponent, {
-      width: '600px',
-      height: '400px',
-    });
+    const dialogRef = this.dialog.open(UserAddEditComponent);
   }
 }
