@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
-import { AddEditFormComponent } from '../add-edit-form/add-edit-form.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { UserAddEditComponent } from '../user-add-edit/user-add-edit.component';
+
 
 @Component({
   selector: 'app-header',
-  imports: [AddEditFormComponent, MatDialogModule],
+  imports: [MatDialogModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
-  constructor(private _dialog: MatDialog) {}
-
+  constructor(private dialog: MatDialog) {}
   openAddEditForm() {
-    this._dialog.open(AddEditFormComponent)
+    
+    const dialogRef = this.dialog.open(UserAddEditComponent, {
+      width: '600px',
+      height: '400px',
+    });
   }
-
 }
