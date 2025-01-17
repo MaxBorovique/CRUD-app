@@ -12,10 +12,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { UserAddEditComponent } from '../user-add-edit/user-add-edit.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @Component({
   selector: 'app-main-content',
-  imports: [MatTableModule, MatPaginatorModule, MatInputModule, MatFormFieldModule, MatSortModule, CommonModule, MatIconModule, MatButtonModule],
+  imports: [MatTableModule, MatPaginatorModule, MatInputModule, MatFormFieldModule, MatSortModule, CommonModule, MatIconModule, MatButtonModule, MatChipsModule],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss'
 })
@@ -34,8 +35,7 @@ export class MainContentComponent implements OnInit{
       });
   }
   pageSize: number = 10;
-  displayedColumns: string[] = ['firstName', 'lastName', 'createdAt', 'tags', 'email', 'description', 'action'
-  ];
+  displayedColumns: string[] = ['firstName', 'lastName', 'createdAt', 'tags', 'email', 'description', 'action'];
   dataSource!: MatTableDataSource<User>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -69,6 +69,8 @@ export class MainContentComponent implements OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
+
+ 
 
     openEditForm(data: any) {
       

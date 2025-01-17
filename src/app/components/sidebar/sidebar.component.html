@@ -13,25 +13,13 @@
 
   <nav class="navigation">
     <ul class="navigation__list">
-      <li class="navigation__item">
+      <li class="navigation__item" *ngFor="let item of navigation">
         <img
           class="navigation__item-icon"
-          src="./assets/icons/home-icon.svg"
+          [src]="item.iconUrl"
           alt="icon"
         />
-        <a class="navigation__item-link" href="#home">home</a>
-      </li>
-      <li class="navigation__item">
-        <a class="navigation__item-link" href="#home">home</a>
-      </li>
-      <li class="navigation__item">
-        <a class="navigation__item-link" href="#home">home</a>
-      </li>
-      <li class="navigation__item">
-        <a class="navigation__item-link" href="#home">home</a>
-      </li>
-      <li class="navigation__item">
-        <a class="navigation__item-link" href="#home">home</a>
+        <a class="navigation__item-link" [href]="'#' + item.name">{{ item.name }}</a>
       </li>
     </ul>
   </nav>

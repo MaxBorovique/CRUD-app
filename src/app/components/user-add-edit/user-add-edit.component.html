@@ -11,6 +11,8 @@
           type="text" 
           placeholder="Enter first name"
           formControlName="firstName"
+          required
+          maxlength="100"
         />
         <mat-error *ngIf="userForm.get('firstName')?.hasError('required')">
           First name is required
@@ -24,6 +26,8 @@
           type="text" 
           placeholder="Enter last name"
           formControlName="lastName"
+          required
+          maxlength="100"
         />
         <mat-error *ngIf="userForm.get('lastName')?.hasError('required')">
           Last name is required
@@ -39,6 +43,8 @@
           type="email" 
           placeholder="Enter email"
           formControlName="email"
+          required
+          maxlength="100"
         />
         <mat-error *ngIf="userForm.get('email')?.hasError('required')">
           Email is required
@@ -55,6 +61,7 @@
           [matDatepicker]="picker"
           formControlName="createdAt"
           readonly
+          maxlength="1000"
         >
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -82,6 +89,7 @@
           type="text" 
           placeholder="Enter tags"
           formControlName="tags"
+          
         />
       </mat-form-field>
     </div>

@@ -12,7 +12,7 @@
 .table-container {
   mat-form-field {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 
   }
 }
@@ -21,3 +21,8 @@
   display: flex;
   justify-content: center;
 }
+
+.heading {
+  color: var(--c-gray)
+}
+
