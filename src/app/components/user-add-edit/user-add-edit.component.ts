@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogActions, MatDialogContent, MatDialogTitle, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogActions, MatDialogContent, MatDialogTitle, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule, NativeDateAdapter, provideNativeDateAdapter } from '@angular/material/core';
@@ -52,6 +52,7 @@ export class UserAddEditComponent implements OnInit {
     private _dialogRef: MatDialogRef<UserAddEditComponent>,
     private dateAdapter: DateAdapter<Date>,
     private _userService: UserServiceService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
 
     this.userForm = this._fb.group({
@@ -66,6 +67,7 @@ export class UserAddEditComponent implements OnInit {
 
   ngOnInit() {
     this.dateAdapter.setLocale('uk');
+    this.userForm.patchValue(this.data);
   }
 
   onFormSubmit() {

@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { UserAddEditComponent } from '../user-add-edit/user-add-edit.component';
 
 @Component({
   selector: 'app-main-content',
@@ -68,4 +69,11 @@ export class MainContentComponent implements OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
+
+    openEditForm(data: any) {
+      
+      const dialogRef = this._dialog.open(UserAddEditComponent, {
+        data,
+      });
+    }
 }
