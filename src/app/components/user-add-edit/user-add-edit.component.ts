@@ -1,11 +1,29 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogActions, MatDialogContent, MatDialogTitle, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialogActions,
+  MatDialogContent,
+  MatDialogTitle,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule, NativeDateAdapter, provideNativeDateAdapter } from '@angular/material/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+  NativeDateAdapter,
+  provideNativeDateAdapter,
+} from '@angular/material/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserServiceService } from '../../services/user-service.service';
 
@@ -26,12 +44,12 @@ export const DEFAULT_DATE_FORMATS = {
   standalone: true,
   imports: [
     CommonModule,
-    MatDialogContent, 
-    MatDialogActions, 
-    MatDialogTitle, 
-    MatButtonModule, 
-    MatFormFieldModule, 
-    MatInputModule, 
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogTitle,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
@@ -41,7 +59,7 @@ export const DEFAULT_DATE_FORMATS = {
   providers: [
     { provide: DateAdapter, useClass: NativeDateAdapter },
     { provide: MAT_DATE_LOCALE, useValue: 'uk-UA' },
-    { provide: MAT_DATE_FORMATS, useValue: DEFAULT_DATE_FORMATS }, 
+    { provide: MAT_DATE_FORMATS, useValue: DEFAULT_DATE_FORMATS },
   ],
 })
 export class UserAddEditComponent implements OnInit {
@@ -52,9 +70,8 @@ export class UserAddEditComponent implements OnInit {
     private _dialogRef: MatDialogRef<UserAddEditComponent>,
     private dateAdapter: DateAdapter<Date>,
     private _userService: UserServiceService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
     this.userForm = this._fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -72,17 +89,19 @@ export class UserAddEditComponent implements OnInit {
 
   onFormSubmit() {
     if (this.userForm.valid) {
-      const newUser = {
-        ...this.userForm.value,
-        createdAt: this.userForm.value.createdAt.toISOString(),
+      if (this.data) {
+        const newUser = {
+          ...this.userForm.value,
+        };
+        const updatedUsers = this._userService.updateUser(this.data.createdAt, newUser);
+        this._dialogRef.close(updatedUsers);
+      } else {
+        const newUser = {
+          ...this.userForm.value,
+        };
+        const updatedUsers = this._userService.addUser(newUser);
+        this._dialogRef.close(updatedUsers);
       }
-      const updatedUsers = this._userService.addUser(newUser);
-      this._dialogRef.close(updatedUsers);
-    } else {
-      Object.keys(this.userForm.controls).forEach(key => {
-        const control = this.userForm.get(key);
-        control?.markAsTouched();
-      });
     }
   }
 

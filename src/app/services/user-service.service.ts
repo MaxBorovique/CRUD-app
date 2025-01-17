@@ -36,8 +36,16 @@ export class UserServiceService {
   }
 
   deleteUser(createdAt: string): User[] {
-    this.users = this.users.filter(user => user.createdAt !== createdAt);
+    this.users = this.users.filter((user) => user.createdAt !== createdAt);
     this.usersUpdated.next([...this.users]);
     return this.users;
+  }
+
+  updateUser(createdAt: string, updatedData: User) {
+    const index = this.users.findIndex((user) => user.createdAt === createdAt);
+    if (index !== -1) {
+      this.users[index] = { ...this.users[index], ...updatedData };
+      this.usersUpdated.next([...this.users]);
+    }
   }
 }
