@@ -1,7 +1,25 @@
 .main-content {
   grid-area: main;
-  background-color: lightgreen;
   padding: 2rem;
   overflow-y: auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.table-container {
+  padding-top: 20px;
+
+  mat-form-field {
+    min-width: 100%;
+    margin-top: 20px;
+    margin: 0 auto;
+
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
 }
