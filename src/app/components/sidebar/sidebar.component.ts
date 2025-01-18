@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { navigation } from '../../constants';
 import { CommonModule } from '@angular/common';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,4 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent {
   navigation = navigation;
+  @Input() sideBarOpen: boolean = true; 
+
+
+  logout() {
+    alert('Take care, until next time!');
+  }
 }

@@ -6,8 +6,41 @@
   grid-template-columns: 270px 1fr;
   grid-template-rows: auto 1fr;
   min-height: 100%;
+  position: relative;
+  transition: grid-template-columns 0.3s ease;
+
+  &.sidebar-hidden {
+    grid-template-columns: 0 1fr;
+    
+    .sidebar {
+      transform: translateX(-100%);
+    }
+  }
 }
 
 .sidebar {
   grid-area: sidebar;
+  width: 270px;
+  transition: transform 0.3s ease;
+}
+
+
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-areas:
+      "header"
+      "main";
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr;
+
+    .sidebar {
+      display: none;
+    }
+
+    &.sidebar-hidden {
+      .sidebar {
+        display: none;
+      }
+    }
+  }
 }

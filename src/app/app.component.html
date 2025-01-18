@@ -1,7 +1,7 @@
-<div class="app-container">
+<div class="app-container" [ngClass]="{'sidebar-hidden': !sidebarOpen}">
   <aside class="sidebar">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [sideBarOpen]="sidebarOpen"></app-sidebar>
   </aside>
-  <app-header></app-header>
+  <app-header [sideBarToggle]="sideBarToggle.bind(this)" ></app-header>
   <app-main-content></app-main-content>
 </div>
