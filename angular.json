@@ -40,7 +40,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/CRUD-app/",
+              "outputPath": "dist/crud-app/browser",
               "budgets": [
                 {
                   "type": "initial",
