@@ -28,7 +28,7 @@ A simple CRUD (Create, Read, Update, Delete) application built with Angular that
 
 1. Clone the repository:
 
-git clone [repository-url](https://github.com/MaxBorovique/CRUD-app)
+git clone (https://github.com/MaxBorovique/CRUD-app)
 
 
 ## Install dependencies:
