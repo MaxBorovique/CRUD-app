@@ -2,11 +2,13 @@
   <h1 class="sidebar__logo">crud app</h1>
 
   <div class="sidebar__image-block">
-    <img
-      src="/assets/images/user-image.jpg"
-      alt="user image"
-      class="sidebar__image"
-    />
+    <a href="https://github.com/MaxBorovique" target="_blank">
+      <img
+        src="/assets/images/user-image.jpg"
+        alt="user image"
+        class="sidebar__image"
+      />
+    </a>
     <span class="sidebar__user-name">Maxym Borovyk</span>
     <span class="sidebar__user-role">Front-end developer</span>
   </div>
@@ -14,15 +16,15 @@
   <nav class="navigation">
     <ul class="navigation__list">
       <li class="navigation__item" *ngFor="let item of navigation">
-        <img
-          class="navigation__item-icon"
-          [src]="item.iconUrl"
-          alt="icon"
-        />
-        <a class="navigation__item-link" [href]="'#' + item.name">{{ item.name }}</a>
+        <img class="navigation__item-icon" [src]="item.iconUrl" alt="icon" />
+        <a class="navigation__item-link" [href]="'#' + item.name">{{
+          item.name
+        }}</a>
       </li>
     </ul>
   </nav>
 
-  <button type="button" class="sidebar__button" (click)="logout()">Logout</button>
+  <button type="button" class="sidebar__button" (click)="logout()">
+    Logout
+  </button>
 </div>
