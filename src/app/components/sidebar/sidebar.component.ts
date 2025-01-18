@@ -7,12 +7,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   selector: 'app-sidebar',
   imports: [CommonModule],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+  styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
   navigation = navigation;
-  @Input() sideBarOpen: boolean = true; 
-
+  @Input() sideBarOpen: boolean = true;
 
   logout() {
     alert('Take care, until next time!');

@@ -13,7 +13,7 @@ export class UserServiceService {
   constructor(private httpClient: HttpClient) {}
 
   getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>('/assets/data/users.json');
+    return this.httpClient.get<User[]>('./assets/data/users.json');
   }
 
   getUsersUpdateListener() {

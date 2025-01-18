@@ -7,8 +7,12 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideHttpClient(),
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideAnimationsAsync(),
+    provideHttpClient(),
     MatNativeDateModule,
     { provide: MAT_DATE_LOCALE, useValue: 'uk-UA' },
-  ]
+  ],
 };
